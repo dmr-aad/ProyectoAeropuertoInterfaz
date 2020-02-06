@@ -1,0 +1,157 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02-dic-2019, 12:34:41
+    Author     : a18danielmr
+*/
+
+/*font sizes*/
+
+.fn-12 {
+    -fx-font-size:12px;
+}
+
+.fn-14 {
+    -fx-font-size:14px;
+}
+
+.fn-16 {
+    -fx-font-size:16px;
+}
+
+.fn-18 {
+    -fx-font-size:18px;
+}
+
+.fn-24 {
+    -fx-font-size:24px;
+}
+
+.fn-32 {
+    -fx-font-size:32px;
+}
+
+.fn-48 {
+    -fx-font-size:48px;
+}
+
+.fn-64 {
+    -fx-font-size:64px;
+}
+
+/*text-alignments*/
+.txt-center {
+    -fx-text-alignment:center;
+}
+
+.txt-justify {
+    -fx-text-alignment:justify;
+}
+
+.txt-left {
+    -fx-text-alignment:left;
+}
+
+.txt-right {
+    -fx-text-alignment:right;
+}
+
+/*text colors*/
+.fill-light-grey {
+    -fx-fill: #ececec;
+    -fx-text-fill: #ececec;
+}
+
+.fill-grey {
+    -fx-fill: #9c9c9c;
+    -fx-text-fill: #9c9c9c;
+}
+
+.fill-dark {
+    -fx-fill: #4f5d55;
+    -fx-text-fill: #4f5d55;
+}
+
+.fill-white {
+    -fx-fill: #ffffff;
+    -fx-text-fill: #ffffff;
+}
+
+.fill-red {
+    -fx-fill: #e86829;
+    -fx-text-fill: #e86829;
+}
+
+.fill-green {
+    -fx-fill: #8bc34a;
+    -fx-text-fill: #8bc34a;
+}
+
+.fill-blue {
+    -fx-fill: #3366ff;
+    -fx-text-fill: #3366ff;
+}
+
+/*background colors*/
+.back-white {
+    -fx-background-color: #ffffff;
+}
+
+.back-transparent {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+}
+
+.back-light-grey {
+    -fx-background-color: #ececec;
+}
+
+.back-green {
+    -fx-background-color: #8bc34a;
+}
+
+.back-sky-blue {
+    -fx-background-color: #87ceeb;
+}
+
+.back-complementary-red {
+    -fx-background-color: #eba387;
+}
+
+.title-blue {
+    -fx-background-color: #37afe2;
+}
+/*shapes*/
+.flat {
+    -fx-background-radius: 0px;
+}
+
+/*borders*/
+.border-2px {
+    -fx-border-width: 2px;
+}
+
+.border-light-grey {
+    -fx-border-color: #ececec;
+}
+
+.border-radius-btn {
+    -fx-border-style: solid inside;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/*hovers*/
+.hover-hand:hover {
+    -fx-cursor: hand;
+}
+
+.hover-dark-red:hover {
+    -fx-background-color: #e06631;
+}
+
+

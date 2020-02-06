@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="back-sky-blue" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aeropuertos_interfaz.controllers.VuelosController">
+   <children>
+      <HBox styleClass="back-sky-blue">
+         <children>
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aeropuertos">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AEROPUERTOS">
+                           <styleClass>
+                              <String fx:value="fn-24" />
+                              <String fx:value="fill-dark" />
+                           </styleClass>
+                        </Text>
+                        <Text fx:id="txtContador_Aeropuertos" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                     </children>
+                  </VBox>
+               </children>
+               <styleClass>
+                  <String fx:value="back-complementary-red" />
+                  <String fx:value="hover-dark-red" />
+                  <String fx:value="border-radius-btn" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aerolineas">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AEROLINEAS">
+                           <styleClass>
+                              <String fx:value="fn-24" />
+                              <String fx:value="fill-dark" />
+                           </styleClass>
+                        </Text>
+                        <Text fx:id="txtContador_Aerolineas" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                     </children>
+                  </VBox>
+               </children>
+               <styleClass>
+                  <String fx:value="back-complementary-red" />
+                  <String fx:value="hover-dark-red" />
+                  <String fx:value="border-radius-btn" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aviones">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AVIONES">
+                           <styleClass>
+                              <String fx:value="fn-24" />
+                              <String fx:value="fill-dark" />
+                           </styleClass>
+                        </Text>
+                        <Text fx:id="txtContador_Aviones" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                     </children>
+                  </VBox>
+               </children>
+               <styleClass>
+                  <String fx:value="back-complementary-red" />
+                  <String fx:value="hover-dark-red" />
+                  <String fx:value="border-radius-btn" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_vuelos">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VUELOS">
+                           <styleClass>
+                              <String fx:value="fn-24" />
+                              <String fx:value="fill-dark" />
+                           </styleClass>
+                        </Text>
+                        <Text fx:id="txtContador_Vuelos" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                     </children>
+                  </VBox>
+               </children>
+               <styleClass>
+                  <String fx:value="back-complementary-red" />
+                  <String fx:value="hover-dark-red" />
+                  <String fx:value="border-radius-btn" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox styleClass="back-sky-blue" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox HBox.hgrow="NEVER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VUELOS" wrappingWidth="237.9140625">
+                     <styleClass>
+                        <String fx:value="fn-24" />
+                        <String fx:value="fill-dark" />
+                        <String fx:value="txt-center" />
+                     </styleClass>
+                  </Text>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="txtBuscar" promptText="Buscar">
+                           <styleClass>
+                              <String fx:value="flat" />
+                              <String fx:value="back-white" />
+                              <String fx:value="border-2px" />
+                              <String fx:value="border-light-grey" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onMouseClicked="#buscar" prefHeight="25.0" prefWidth="80.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="fn-14" />
+                              <String fx:value="back-sky-blue" />
+                              <String fx:value="fill-white" />
+                              <String fx:value="hover-hand" />
+                           </styleClass>
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true" styleClass="hover-hand">
+                                 <image>
+                                    <Image url="@../assets/images/magnifier.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <ScrollPane>
+                     <content>
+                        <ListView fx:id="listaVuelos" onMouseClicked="#seleccion_item" styleClass="back-light-grey" />
+                     </content>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </ScrollPane>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FICHA VUELO" wrappingWidth="237.9140625">
+                     <styleClass>
+                        <String fx:value="fn-24" />
+                        <String fx:value="fill-dark" />
+                        <String fx:value="txt-center" />
+                     </styleClass>
+                  </Text>
+                  <HBox alignment="CENTER_LEFT" styleClass="back-complementary-red" VBox.vgrow="NEVER">
+                     <children>
+                        <VBox>
+                           <children>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images_data/travel.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-24" text="VUELO" wrappingWidth="300.0" />
+                              <HBox alignment="TOP_CENTER" prefHeight="10.0">
+                                 <children>
+                                    <RadioButton fx:id="rbIda" mnemonicParsing="false" selected="true" text="Ida">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="rgTipo" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="rbIdayVuelta" mnemonicParsing="false" text="Ida y Vuelta" toggleGroup="$rgTipo">
+                                       <HBox.margin>
+                                          <Insets left="25.0" />
+                                       </HBox.margin>
+                                    </RadioButton>
+                                 </children></HBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo" wrappingWidth="75.0" />
+                                          <TextField fx:id="codVuelo" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" wrappingWidth="75.0" />
+                                          <TextField fx:id="precioVuelo" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Oferta" wrappingWidth="75.0" />
+                                          <RadioButton fx:id="rbSi" mnemonicParsing="false" text="Si">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="rgOferta" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="rbNo" mnemonicParsing="false" selected="true" text="No" toggleGroup="$rgOferta" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Origen" wrappingWidth="75.0" />
+                                          <TextField fx:id="origenVuelo" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Destino" wrappingWidth="75.0" />
+                                          <TextField fx:id="destinoVuelo" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Salida" wrappingWidth="75.0" />
+                                          <TextField fx:id="diaSalidaVuelo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dia">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="mesSalidaVuelo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mes" wrappingWidth="25.0">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="añoSalidaVuelo" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Año" wrappingWidth="25.0">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Salida" wrappingWidth="75.0" />
+                                          <TextField fx:id="horaSalidaVuelo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="minutoSalidaVuelo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minuto" wrappingWidth="50.0">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora llegada" wrappingWidth="75.0" />
+                                          <TextField fx:id="horaLlegadaVuelo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="minutoLlegadaVuelo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minuto" wrappingWidth="50.0">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Avion" wrappingWidth="75.0" />
+                                          <ComboBox fx:id="cbAvion" prefWidth="150.0" promptText="Elige un avion" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tarifa" wrappingWidth="75.0" />
+                                          <TextField fx:id="tarifaVuelo" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Impuesto" wrappingWidth="75.0" />
+                                          <TextField fx:id="impuestoVuelo" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseClicked="#añadir" text="Añadir">
+                                 <styleClass>
+                                    <String fx:value="fn-14" />
+                                    <String fx:value="back-transparent" />
+                                    <String fx:value="fill-green" />
+                                    <String fx:value="hover-hand" />
+                                 </styleClass>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#modificar" text="Modificar">
+                                 <styleClass>
+                                    <String fx:value="fn-14" />
+                                    <String fx:value="back-transparent" />
+                                    <String fx:value="fill-blue" />
+                                    <String fx:value="hover-hand" />
+                                 </styleClass>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#borrar" text="Borrar">
+                                 <styleClass>
+                                    <String fx:value="fn-14" />
+                                    <String fx:value="back-transparent" />
+                                    <String fx:value="fill-red" />
+                                    <String fx:value="hover-hand" />
+                                 </styleClass>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" />
+                     </effect>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@../stylesheet/Estilos.css" />
+      <URL value="@../stylesheet/aeropuertos.css" />
+   </stylesheets>
+</VBox>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="aeropuertos_interfaz.objetos.Vuelo" table="vuelos">
+        <id name="codigoVuelo"/>
+        <property name="precio"/>
+        <property name="origen"/>
+        <property name="destino"/>
+        <property name="fechaSalida"/>
+        <property name="horaSalida"/>
+        <property name="horaLlegada"/>
+        <property name="embarque"/>
+        <property name="oferta"/>
+        <set cascade="all" inverse="true" name="pasajeros" table="pasajeros">
+            <key>
+                <column name="vuelo" not-null="true"/>
+            </key>
+            <one-to-many class="aeropuertos_interfaz.objetos.Pasajero"/>
+        </set>
+        <many-to-one class="aeropuertos_interfaz.objetos.Avion" name="avion">
+            <column name="idAvion" not-null="true"/>
+        </many-to-one>
+        <set cascade="all" inverse="true" name="Asientos" table="asientos">
+            <key>
+                <column name="vuelo" not-null="true"/>
+            </key>
+            <one-to-many class="aeropuertos_interfaz.objetos.Asiento"/>
+        </set>
+        <joined-subclass name="aeropuertos_interfaz.objetos.VueloIda" table="vuelosIda">
+            <key column="codigoVuelo" not-null="true"/>
+            <property name="tarifa"/>
+            <property name="impuesto"/>
+        </joined-subclass>
+        <joined-subclass name="aeropuertos_interfaz.objetos.VueloIdaVuelta" table="vuelosVuelta">
+            <key column="codigoVuelo" not-null="true"/>
+            <property name="tarifa"/>
+            <property name="impuesto"/>
+        </joined-subclass>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aeropuertos_interfaz.controllers.Tabla_vueloController">
+   <children>
+      <TableView fx:id="tablaVuelo" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="cod" prefWidth="78.0" text="COD" />
+          <TableColumn fx:id="precio" minWidth="0.0" prefWidth="81.0" text="PRECIO" />
+            <TableColumn fx:id="origen" minWidth="0.0" prefWidth="176.0" text="ORIGEN" />
+            <TableColumn fx:id="destino" prefWidth="152.0" text="DESTINO" />
+            <TableColumn fx:id="fecha" prefWidth="112.0" text="FECHA" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="border_pane" styleClass="back-sky-blue" stylesheets="@../stylesheet/Estilos.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aeropuertos_interfaz.controllers.DashboardController">
+   <top>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="back-sky-blue" BorderPane.alignment="CENTER">
+         <children>
+            <HBox styleClass="back-emerald-green">
+               <children>
+                  <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aeropuertos" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AEROPUERTOS">
+                                 <styleClass>
+                                    <String fx:value="fn-24" />
+                                    <String fx:value="fill-dark" />
+                                 </styleClass>
+                              </Text>
+                              <Text fx:id="txtContador_Aeropuertos" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aerolineas" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AEROLINEAS">
+                                 <styleClass>
+                                    <String fx:value="fn-24" />
+                                    <String fx:value="fill-dark" />
+                                 </styleClass>
+                              </Text>
+                              <Text fx:id="txtContador_Aerolineas" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aviones" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AVIONES">
+                                 <styleClass>
+                                    <String fx:value="fn-24" />
+                                    <String fx:value="fill-dark" />
+                                 </styleClass>
+                              </Text>
+                              <Text fx:id="txtContador_Aviones" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_vuelos" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VUELOS">
+                                 <styleClass>
+                                    <String fx:value="fn-24" />
+                                    <String fx:value="fill-dark" />
+                                 </styleClass>
+                              </Text>
+                              <Text fx:id="txtContador_Vuelos" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+         <stylesheets>
+            <URL value="@../stylesheet/Estilos.css" />
+            <URL value="@../stylesheet/dashboard.css" />
+         </stylesheets>
+      </VBox>
+   </top>
+   <center>
+      <ImageView fitHeight="357.0" fitWidth="656.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images_data/terminal.jpg" />
+         </image>
+      </ImageView>
+   </center>
+</BorderPane>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="aeropuertos_interfaz.objetos.Aeropuerto" table="aeropuertos">
+      <id name="codigoAeropuerto"/>
+      <property name="pais"/>
+      <property name="ciudad"/>
+      
+      <set name="aerolineas" table="Aeropuerto_AeroLinea" inverse="false" cascade="all" lazy="false">
+          <key>
+              <column name="Aeropuerto" not-null="true"/>
+          </key>
+          
+          <many-to-many class="aeropuertos_interfaz.objetos.Aerolinea">
+              <column name="Aerolinea" not-null="true"/>
+         </many-to-many>          
+      </set>
+  </class>
+</hibernate-mapping>

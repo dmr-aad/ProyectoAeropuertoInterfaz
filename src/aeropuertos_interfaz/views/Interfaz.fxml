@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="border_pane" prefHeight="650.0" prefWidth="1150.0" styleClass="back-sky-blue" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aeropuertos_interfaz.controllers.InterfazController">
+   <left>
+      <HBox styleClass="back-emerald-green" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox styleClass="back-emerald-green">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AeropuertosBD" wrappingWidth="257.13671875">
+                           <styleClass>
+                              <String fx:value="fn-32" />
+                              <String fx:value="txt-center" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox onMouseClicked="#show_dashboard">
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/home.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-18" text="Inicio">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </VBox>
+                  <VBox onMouseClicked="#show_airports">
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/airport.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-18" text="Aeropuertos">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </VBox>
+                  <VBox onMouseClicked="#show_airlines">
+                     <children>
+                        <HBox>
+                           <children>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/flight.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-18" text="Aerolineas">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </VBox>
+                  <VBox onMouseClicked="#show_airplanes">
+                     <children>
+                        <HBox>
+                           <children>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/plane.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-18" text="Aviones">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </VBox>
+                  <VBox onMouseClicked="#show_seats">
+                     <children>
+                        <HBox>
+                           <children>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/seat.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-18" text="Asientos">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </VBox>
+                  <VBox onMouseClicked="#show_flights">
+                     <children>
+                        <HBox>
+                           <children>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/travel.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-18" text="Vuelos">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="back-sky-blue" BorderPane.alignment="CENTER" />
+   </center>
+   <stylesheets>
+      <URL value="@../stylesheet/Estilos.css" />
+      <URL value="@../stylesheet/Estilos.css" />
+   </stylesheets>
+</BorderPane>

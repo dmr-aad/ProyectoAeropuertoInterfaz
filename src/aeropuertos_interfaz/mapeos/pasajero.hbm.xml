@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class  name="aeropuertos_interfaz.objetos.Pasajero" table="pasajeros">
+        <id name="dni"/>
+        <property name="nombre"/>
+        <property name="apellidos"/>
+        <property name="pais"/>
+        <property name="email"/>
+        <property name="telefono"/>
+      
+        <many-to-one class = "aeropuertos_interfaz.objetos.Vuelo" name="vuelo">
+            <column name="vuelo" not-null="true"/>
+        </many-to-one>
+      
+        <set name="reservas" table="reservas" cascade="all" inverse="true" lazy="false">
+            <key>
+                <column name="pasajero" not-null="true"/>
+            </key>
+          
+            <one-to-many class = "aeropuertos_interfaz.objetos.Reserva"/>
+        </set>
+      
+    </class>
+</hibernate-mapping>
