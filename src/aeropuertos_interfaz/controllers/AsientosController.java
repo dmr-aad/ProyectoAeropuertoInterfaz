@@ -9,20 +9,30 @@ import aeropuertos_interfaz.helpers.*;
 //import aeropuertos_interfaz.objetos.Asiento;
 //import aeropuertos_interfaz.objetos.Avion;
 import Objetos.*;
+import aeropuertos_interfaz.NewHibernateUtil;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.StageStyle;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 /**
  * FXML Controller class
@@ -33,20 +43,7 @@ public class AsientosController implements Initializable {
     private String item;
     private int indice;
 
-    @FXML
-    private TextField filaAsiento;
-    @FXML
-    private TextField letraAsiento;
-    @FXML
-    private RadioButton rbSiAsiento;
-    @FXML
-    private ToggleGroup rgOcupado;
-    @FXML
-    private RadioButton rbNoAsiento;
-    @FXML
     private ListView<String> listaAsientos;
-    @FXML
-    private TextField avionAsiento;
     @FXML
     private Text txtContador_Aeropuertos;
     @FXML
@@ -56,71 +53,31 @@ public class AsientosController implements Initializable {
     @FXML
     private Text txtContador_Vuelos;
     @FXML
-    private TextField txtBuscar;
+    private TableView<Asiento> tablaAsientos;
+    @FXML
+    private TableColumn<Asiento, Integer> fila;
+    @FXML
+    private TableColumn<Asiento, String> letra;
+    @FXML
+    private TableColumn<Asiento, Boolean> ocupado;
+    @FXML
+    private ComboBox<String> cbVuelos;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        actualizarLista();
-        actualizarContador();
-        limpiarEntry();
-    }    
-
-    @FXML
-    private void modificar(MouseEvent event) {
-        String fila = filaAsiento.getText();
-        String letra = letraAsiento.getText();
-        String asiento = fila.concat(letra);
-        actualizarLista();
-        actualizarContador();
-        limpiarEntry();
+        cargarAsientos();
+        fillCombo();
     }
 
-    @FXML
-    private void borrar(MouseEvent event) {
-        String fila = filaAsiento.getText();
-        String letra = letraAsiento.getText();
-        Bajas.asiento(Integer.parseInt(fila), letra.charAt(0));
-        String asiento = fila.concat(letra);
-        actualizarLista();
-        actualizarContador();
-        limpiarEntry();
+    public void fillCombo() {
+        ArrayList<String> codigos = new ArrayList<String>();
+        codigos = CargarDatos.listaVuelos();
+        cbVuelos.getItems().addAll(codigos);
     }
 
-    @FXML
-    private void seleccion_item(MouseEvent event) {
-        item = listaAsientos.getSelectionModel().getSelectedItem();
-        indice = listaAsientos.getSelectionModel().getSelectedIndex();
-        Asiento a = Recuperar.asiento(Character.getNumericValue(item.charAt(0)), item.charAt(1));
-        filaAsiento.setText(String.valueOf(a.getFila()));
-        letraAsiento.setText(String.valueOf(a.getLetra()));
-        if (a.isOcupado()) {
-            rbSiAsiento.setSelected(true);
-        } else {
-            rbNoAsiento.setSelected(true);
-        }
-    }
-    
-    public void limpiarEntry() {
-        filaAsiento.setText("");
-        letraAsiento.setText("");
-        rbNoAsiento.setSelected(true);
-    }
-    
-    public void actualizarLista() {
-        listaAsientos.getItems().clear();
-        listaAsientos.getItems().addAll(CargarDatos.listaAsientos());
-    }
-
-    public void actualizarContador() {
-        txtContador_Aeropuertos.setText(Contar.Aeropuertos());
-        txtContador_Aerolineas.setText(Contar.Aerolineas());
-        txtContador_Aviones.setText(Contar.Aviones());
-        txtContador_Vuelos.setText(Contar.Vuelos());
-    }
-    
     @FXML
     private void show_table_aeropuertos(MouseEvent event) {
     }
@@ -139,20 +96,24 @@ public class AsientosController implements Initializable {
 
     @FXML
     private void buscar(MouseEvent event) {
-        String busqueda = txtBuscar.getText();
-        if (!busqueda.isEmpty()) {
-            ArrayList<String> resultado = new ArrayList<>();
-            resultado = Busqueda.Asientos(busqueda);
-            if (!resultado.isEmpty()) {
-                listaAsientos.getItems().clear();
-                listaAsientos.getItems().addAll(resultado);
-            } else {
-                listaAsientos.getItems().clear();
-            }
-        } else {
-            listaAsientos.getItems().clear();
-            listaAsientos.getItems().addAll(CargarDatos.listaAsientos());
-        }
+        String busqueda = cbVuelos.getSelectionModel().getSelectedItem();
+        Vuelo resultado = Busqueda.Vuelo(busqueda);
+        tablaAsientos.setItems(getAsiento(resultado));
     }
+    
+    public void cargarAsientos() {
+        fila.setCellValueFactory(new PropertyValueFactory<Asiento, Integer>("fila"));
+        letra.setCellValueFactory(new PropertyValueFactory<Asiento, String>("letra"));
+        ocupado.setCellValueFactory(new PropertyValueFactory<Asiento, Boolean>("ocupado"));
+    }
+    
+    public ObservableList<Asiento> getAsiento(Vuelo v) {
+        ObservableList<Asiento> asiento = FXCollections.observableArrayList();
+        List<Asiento> asientos = new ArrayList<>(v.getAsientos());
+        asiento.addAll(asientos);
+        return asiento;
+    }
+
+    
     
 }

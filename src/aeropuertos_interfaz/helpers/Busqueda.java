@@ -9,6 +9,7 @@ import Objetos.Aerolinea;
 import Objetos.Aeropuerto;
 import Objetos.Asiento;
 import Objetos.Avion;
+import Objetos.Reserva;
 import Objetos.Vuelo;
 import aeropuertos_interfaz.NewHibernateUtil;
 import java.util.ArrayList;
@@ -103,6 +104,46 @@ public class Busqueda {
         return ids;
     }
     
+    public static Avion AvionesObjeto(String busqueda) {
+        Session sesion;
+        Avion a = null;
+        try {
+            sesion = NewHibernateUtil.getSession();
+            List<Avion> aviones_aux = sesion.createCriteria(Avion.class).list();
+            sesion.close();
+            if (!aviones_aux.isEmpty()) {
+                for (Avion avion : aviones_aux) {
+                    if (String.valueOf(avion.getIdAvion()).contains(busqueda)) {
+                        a = avion;
+                    }
+                }
+            }
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+        }
+        return a;
+    }
+    
+    public static Reserva ReservasObjeto(String busqueda) {
+        Session sesion;
+        Reserva r = null;
+        try {
+            sesion = NewHibernateUtil.getSession();
+            List<Reserva> reservas_aux = sesion.createCriteria(Reserva.class).list();
+            sesion.close();
+            if (!reservas_aux.isEmpty()) {
+                for (Reserva reserva : reservas_aux) {
+                    if (String.valueOf(reserva.getPasajero().getDni()).contains(busqueda)) {
+                        r = reserva;
+                    }
+                }
+            }
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+        }
+        return r;
+    }
+    
     public static ArrayList<String> Vuelos(String busqueda) {
         Session sesion;
         ArrayList<String> codigos = new ArrayList<>();
@@ -121,5 +162,25 @@ public class Busqueda {
             System.out.println(e.getMessage());
         }
         return codigos;
+    }
+    
+    public static Vuelo Vuelo(String busqueda) {
+        Session sesion;
+        Vuelo v = null;
+        try {
+            sesion = NewHibernateUtil.getSession();
+            List<Vuelo> vuelos = sesion.createCriteria(Vuelo.class).list();
+            sesion.close();
+            if (!vuelos.isEmpty()) {
+                for (Vuelo vuelo : vuelos) {
+                    if (vuelo.getCodigoVuelo().contains(busqueda.toUpperCase())) {
+                        v = vuelo;
+                    }
+                }
+            }
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+        }
+        return v;
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="Objetos.Avion" table = "aviones">
+      <id name="idAvion">
+          <generator class="identity"/>
+      </id>
+      <property name="modelo"/>
+      <property name="cantidadPasajeros"/>
+      
+      <many-to-one name="aerolinea" class="Objetos.Aerolinea">
+          <column name="codigoAerolinea" not-null="true"/>
+      </many-to-one>
+      
+      <set name="Vuelos" table="vuelos" cascade="all" inverse="true" lazy="false">
+          <key>
+              <!-- Posible error -->
+              <column name ="codigoVuelo" not-null="true"/>
+          </key>
+          
+          <one-to-many class ="Objetos.Vuelo"/>
+      </set>
+     
+  </class>
+</hibernate-mapping>

@@ -15,12 +15,10 @@ import org.hibernate.SessionFactory;
  *
  * @author Mirotic
  */
-
-@SuppressWarnings("deprecation")
 public class NewHibernateUtil {
 
     private static final SessionFactory sessionFactory;
-
+    
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 

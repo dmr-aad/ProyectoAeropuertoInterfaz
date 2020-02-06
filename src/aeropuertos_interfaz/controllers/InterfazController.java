@@ -65,5 +65,10 @@ public class InterfazController implements Initializable {
     private void show_flights(MouseEvent event) {
         VistasDinamicas.load_border_center(border_pane, "vuelos");
     }
+
+    @FXML
+    private void show_reservation(MouseEvent event) {
+        VistasDinamicas.load_border_center(border_pane, "reservas");
+    }
     
 }

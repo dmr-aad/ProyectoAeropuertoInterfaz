@@ -15,12 +15,14 @@ import aeropuertos_interfaz.helpers.Recuperar;
 import Objetos.*;
 import aeropuertos_interfaz.helpers.Busqueda;
 import aeropuertos_interfaz.helpers.Contar;
+import aeropuertos_interfaz.helpers.Validar;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -36,8 +38,10 @@ import javafx.stage.StageStyle;
  * @author a18danielmr
  */
 public class AeropuertosController implements Initializable {
+
     private String item;
     private int indice;
+    private Alert alert = new Alert(Alert.AlertType.WARNING);
 
     @FXML
     private TextField codAeropuerto;
@@ -58,7 +62,6 @@ public class AeropuertosController implements Initializable {
     @FXML
     private TextField txtBuscar;
 
-
     /**
      * Initializes the controller class.
      */
@@ -67,17 +70,6 @@ public class AeropuertosController implements Initializable {
         actualizarLista();
         actualizarContador();
         limpiarEntry();
-    }    
-
-    private void añadir_aeropuerto(MouseEvent event) {
-        Dialog dialog = new Dialog();
-        Parent root = HelperResourcesLoader.loadFXML("/dialogs/añadir_aeropuerto");
-        dialog.getDialogPane().setContent(root);
-        
-        root.setStyle("-fx-background-color:transparent");
-        
-        dialog.initStyle(StageStyle.TRANSPARENT);
-        dialog.show();
     }
 
     @FXML
@@ -85,11 +77,21 @@ public class AeropuertosController implements Initializable {
         String cod = codAeropuerto.getText();
         String pais = paisAeropuerto.getText();
         String ciudad = ciudadAeropuerto.getText();
-        Aeropuerto a = new Aeropuerto(cod, pais, ciudad);
-        Altas.altasAeropuertos(a);
-        actualizarLista();
-        actualizarContador();
-        limpiarEntry();
+        if (!cod.isEmpty() && !pais.isEmpty() && !ciudad.isEmpty()) {
+            Aeropuerto a = new Aeropuerto(cod, pais, ciudad);
+            if (Validar.validarCodigoAeropuerto(cod) == 0) {
+                Altas.altasAeropuertos(a);
+                actualizarLista();
+                actualizarContador();
+                limpiarEntry();
+            }
+        } else {
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Error en el Alta del Aeropuerto");
+            alert.setContentText("Faltan campos por rellenar");
+
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -120,20 +122,20 @@ public class AeropuertosController implements Initializable {
         paisAeropuerto.setText(a.getPais());
         ciudadAeropuerto.setText(a.getCiudad());
     }
-    
+
     public void limpiarEntry() {
         codAeropuerto.setText("");
         paisAeropuerto.setText("");
         ciudadAeropuerto.setText("");
     }
-    
+
     public void actualizarContador() {
         txtContador_Aeropuertos.setText(Contar.Aeropuertos());
         txtContador_Aerolineas.setText(Contar.Aerolineas());
         txtContador_Aviones.setText(Contar.Aviones());
         txtContador_Vuelos.setText(Contar.Vuelos());
     }
-    
+
     public void actualizarLista() {
         listaAeropuertos.getItems().clear();
         listaAeropuertos.getItems().addAll(CargarDatos.listaAeropuertos());
@@ -141,7 +143,7 @@ public class AeropuertosController implements Initializable {
 
     @FXML
     private void show_table_aeropuertos(MouseEvent event) {
-        
+
     }
 
     @FXML

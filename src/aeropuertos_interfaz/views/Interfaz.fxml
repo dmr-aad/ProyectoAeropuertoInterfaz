@@ -21,7 +21,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AeropuertosBD" wrappingWidth="257.13671875">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AirManagementJD" wrappingWidth="264.13671875">
                            <styleClass>
                               <String fx:value="fn-32" />
                               <String fx:value="txt-center" />
@@ -164,39 +164,6 @@
                         <String fx:value="border-radius-btn" />
                      </styleClass>
                   </VBox>
-                  <VBox onMouseClicked="#show_seats">
-                     <children>
-                        <HBox>
-                           <children>
-                              <ImageView pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../assets/images/seat.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-18" text="Asientos">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="20.0" right="20.0" top="20.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="back-complementary-red" />
-                        <String fx:value="hover-hand" />
-                        <String fx:value="hover-dark-red" />
-                        <String fx:value="border-radius-btn" />
-                     </styleClass>
-                  </VBox>
                   <VBox onMouseClicked="#show_flights">
                      <children>
                         <HBox>
@@ -230,7 +197,73 @@
                         <String fx:value="border-radius-btn" />
                      </styleClass>
                   </VBox>
+                  <VBox onMouseClicked="#show_seats">
+                     <children>
+                        <HBox>
+                           <children>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/seat.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-18" text="Asientos">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </VBox>
+                  <VBox onMouseClicked="#show_reservation">
+                     <children>
+                        <HBox>
+                           <children>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/online-booking.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-18" text="Reservas">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="back-complementary-red" />
+                        <String fx:value="hover-hand" />
+                        <String fx:value="hover-dark-red" />
+                        <String fx:value="border-radius-btn" />
+                     </styleClass>
+                  </VBox>
                </children>
+               <HBox.margin>
+                  <Insets bottom="5.0" />
+               </HBox.margin>
             </VBox>
          </children>
          <BorderPane.margin>
@@ -239,7 +272,10 @@
       </HBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="back-sky-blue" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="back-sky-blue" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></VBox>
    </center>
    <stylesheets>
       <URL value="@../stylesheet/Estilos.css" />

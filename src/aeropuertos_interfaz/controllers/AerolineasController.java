@@ -14,21 +14,30 @@ import aeropuertos_interfaz.helpers.Recuperar;
 //import aeropuertos_interfaz.objetos.Aerolinea;
 //import aeropuertos_interfaz.objetos.Aeropuerto;
 import Objetos.*;
+import aeropuertos_interfaz.NewHibernateUtil;
 import aeropuertos_interfaz.helpers.Busqueda;
 import aeropuertos_interfaz.helpers.Contar;
+import aeropuertos_interfaz.helpers.Validar;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.StageStyle;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 /**
  * FXML Controller class
@@ -39,9 +48,8 @@ public class AerolineasController implements Initializable {
 
     private String item;
     private int indice;
+    private Alert alert = new Alert(Alert.AlertType.WARNING);
 
-    @FXML
-    private ListView<String> listaAerolineas;
     @FXML
     private TextField codAerolinea;
     @FXML
@@ -58,13 +66,15 @@ public class AerolineasController implements Initializable {
     private Text txtContador_Vuelos;
     @FXML
     private TextField txtBuscar;
+    @FXML
+    private TreeView<String> treeAerolineas;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        actualizarLista();
+        cargarTree();
         actualizarContador();
         limpiarEntry();
         fillCombo();
@@ -74,13 +84,32 @@ public class AerolineasController implements Initializable {
     private void añadir(MouseEvent event) {
         String cod = codAerolinea.getText();
         String nom = nomAerolinea.getText();
-        String codigoAeropuerto = cbAeropuerto.getSelectionModel().getSelectedItem();
-        Aeropuerto aeropuerto = Recuperar.aeropuerto(codigoAeropuerto);
-        Aerolinea a = new Aerolinea(cod, nom);
-        Altas.altasAerolineas(a, aeropuerto);
-        actualizarLista();
-        actualizarContador();
-        limpiarEntry();
+        String codigoAeropuerto = null;
+        if (cbAeropuerto.getSelectionModel().getSelectedIndex() != -1) {
+            codigoAeropuerto = cbAeropuerto.getSelectionModel().getSelectedItem();
+            Aeropuerto aeropuerto = Recuperar.aeropuerto(codigoAeropuerto);
+            if (!cod.isEmpty() && !nom.isEmpty()) {
+                Aerolinea a = new Aerolinea(cod, nom);
+                if (Validar.validarCodigoAerolinea(cod) == 0) {
+                    Altas.altasAerolineas(a, aeropuerto);
+                    cargarTree();
+                    actualizarContador();
+                    limpiarEntry();
+                }
+            } else {
+                alert.setTitle("Advertencia");
+                alert.setHeaderText("Error en el Alta del Aeropuerto");
+                alert.setContentText("Faltan campos por rellenar");
+
+                alert.showAndWait();
+            }
+        } else {
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Error en el Alta de la Aerolinea");
+            alert.setContentText("Debes seleccionar un aeropuerto");
+
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -97,23 +126,15 @@ public class AerolineasController implements Initializable {
         String cod = codAerolinea.getText();
         String nom = nomAerolinea.getText();
         Bajas.aerolinea(cod);
-        actualizarLista();
+        cargarTree();
         actualizarContador();
         limpiarEntry();
-    }
-
-    @FXML
-    private void seleccion_item(MouseEvent event) {
-        item = listaAerolineas.getSelectionModel().getSelectedItem();
-        indice = listaAerolineas.getSelectionModel().getSelectedIndex();
-        Aerolinea a = Recuperar.aerolinea(item);
-        codAerolinea.setText(a.getCodigoAerolinea());
-        nomAerolinea.setText(a.getNombre());
     }
 
     public void limpiarEntry() {
         codAerolinea.setText("");
         nomAerolinea.setText("");
+        cbAeropuerto.getSelectionModel().select(-1);
     }
 
     public void fillCombo() {
@@ -121,17 +142,40 @@ public class AerolineasController implements Initializable {
         codigos = CargarDatos.listaAeropuertos();
         cbAeropuerto.getItems().addAll(codigos);
     }
-    
+
     public void actualizarContador() {
         txtContador_Aeropuertos.setText(Contar.Aeropuertos());
         txtContador_Aerolineas.setText(Contar.Aerolineas());
         txtContador_Aviones.setText(Contar.Aviones());
         txtContador_Vuelos.setText(Contar.Vuelos());
     }
-    
-    public void actualizarLista() {
-        listaAerolineas.getItems().clear();
-        listaAerolineas.getItems().addAll(CargarDatos.listaAerolineas());
+
+    public void cargarTree() {
+        TreeItem root = new TreeItem("Aerolineas");
+        root.setExpanded(true);
+        treeAerolineas.setShowRoot(false);
+        treeAerolineas.setRoot(root);
+        Session sesion;
+        List<Aerolinea> aerolineas = null;
+        Set<Aeropuerto> aeropuertos = null;
+        try {
+            sesion = NewHibernateUtil.getSession();
+            aerolineas = sesion.createCriteria(Aerolinea.class).list();
+            sesion.close();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+        }
+        if (!aerolineas.isEmpty()) {
+            for (Aerolinea aerolinea : aerolineas) {
+                TreeItem item = new TreeItem(aerolinea.getCodigoAerolinea());
+                root.getChildren().add(item);
+                aeropuertos = aerolinea.getAeropuertos();
+                for (Aeropuerto aeropuerto : aeropuertos) {
+                    TreeItem hijo = new TreeItem(aeropuerto.getCodigoAeropuerto());
+                    item.getChildren().add(hijo);
+                }
+            }
+        }
     }
 
     @FXML
@@ -154,17 +198,47 @@ public class AerolineasController implements Initializable {
     private void buscar(MouseEvent event) {
         String busqueda = txtBuscar.getText();
         if (!busqueda.isEmpty()) {
-            ArrayList<String> resultado = new ArrayList<>();
-            resultado = Busqueda.Aerolineas(busqueda);
-            if (!resultado.isEmpty()) {
-                listaAerolineas.getItems().clear();
-                listaAerolineas.getItems().addAll(resultado);
-            } else {
-                listaAerolineas.getItems().clear();
+            TreeItem root = new TreeItem("Aerolineas");
+            root.setExpanded(true);
+            treeAerolineas.setShowRoot(false);
+            treeAerolineas.setRoot(root);
+            Session sesion;
+            List<Aerolinea> aerolineas = null;
+            Set<Aeropuerto> aeropuertos = null;
+            try {
+                sesion = NewHibernateUtil.getSession();
+                aerolineas = sesion.createCriteria(Aerolinea.class).list();
+                sesion.close();
+            } catch (HibernateException e) {
+                System.out.println(e.getMessage());
+            }
+            if (!aerolineas.isEmpty()) {
+                for (Aerolinea aerolinea : aerolineas) {
+                    if (aerolinea.getCodigoAerolinea().contains(busqueda.toUpperCase())) {
+                        TreeItem item = new TreeItem(aerolinea.getCodigoAerolinea());
+                        root.getChildren().add(item);
+                        aeropuertos = aerolinea.getAeropuertos();
+                        for (Aeropuerto aeropuerto : aeropuertos) {
+                            TreeItem hijo = new TreeItem(aeropuerto.getCodigoAeropuerto());
+                            item.getChildren().add(hijo);
+                        }
+                    }
+                }
             }
         } else {
-            listaAerolineas.getItems().clear();
-            listaAerolineas.getItems().addAll(CargarDatos.listaAerolineas());
+            cargarTree();
+        }
+    }
+
+    @FXML
+    private void cargarItem(MouseEvent event
+    ) {
+        if (event.getClickCount() == 2) {
+            TreeItem<String> item = treeAerolineas.getSelectionModel().getSelectedItem();
+            Aerolinea a = Recuperar.aerolinea(item.getParent().getValue());
+            codAerolinea.setText(a.getCodigoAerolinea());
+            nomAerolinea.setText(a.getNombre());
+            cbAeropuerto.getSelectionModel().select(item.getValue());
         }
     }
 }

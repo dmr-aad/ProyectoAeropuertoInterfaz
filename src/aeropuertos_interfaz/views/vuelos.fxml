@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTimePicker?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -21,7 +23,7 @@
    <children>
       <HBox styleClass="back-sky-blue">
          <children>
-            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aeropuertos">
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aeropuertos" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -47,7 +49,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aerolineas">
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aerolineas" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -73,7 +75,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aviones">
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aviones" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -99,7 +101,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_vuelos">
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_vuelos" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -222,10 +224,18 @@
                                  </children></HBox>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <HBox>
+                                    <HBox alignment="CENTER_LEFT">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo" wrappingWidth="75.0" />
-                                          <TextField fx:id="codVuelo" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo" wrappingWidth="53.0" />
+                                          <Text fx:id="txtLetraCod" strokeType="OUTSIDE" strokeWidth="0.0" text="V-">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="codVuelo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin></TextField>
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -276,62 +286,18 @@
                                        </VBox.margin>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Salida" wrappingWidth="75.0" />
-                                          <TextField fx:id="diaSalidaVuelo">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </TextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dia">
-                                             <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                          <TextField fx:id="mesSalidaVuelo">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </TextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mes" wrappingWidth="25.0">
-                                             <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                          <TextField fx:id="añoSalidaVuelo" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Año" wrappingWidth="25.0">
-                                             <HBox.margin>
-                                                <Insets left="5.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                       </children>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Salida" wrappingWidth="75.0" />
+                                          <JFXDatePicker fx:id="pickerFSalida" />
+                                       </children>
                                     </HBox>
                                     <HBox>
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Salida" wrappingWidth="75.0" />
-                                          <TextField fx:id="horaSalidaVuelo">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </TextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora">
-                                             <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                          <TextField fx:id="minutoSalidaVuelo">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </TextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minuto" wrappingWidth="50.0">
-                                             <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                             </HBox.margin>
-                                          </Text>
+                                          <JFXTimePicker fx:id="pickerHSalida" />
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -340,26 +306,7 @@
                                     <HBox>
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora llegada" wrappingWidth="75.0" />
-                                          <TextField fx:id="horaLlegadaVuelo">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </TextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora">
-                                             <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                          <TextField fx:id="minutoLlegadaVuelo">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </TextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minuto" wrappingWidth="50.0">
-                                             <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                             </HBox.margin>
-                                          </Text>
+                                          <JFXTimePicker fx:id="pickerHLlegada" />
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

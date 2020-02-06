@@ -4,12 +4,10 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -20,7 +18,7 @@
    <children>
       <HBox styleClass="back-sky-blue">
          <children>
-            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aeropuertos">
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aeropuertos" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -46,7 +44,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aerolineas">
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aerolineas" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -72,7 +70,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aviones">
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_aviones" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -98,7 +96,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_vuelos">
+            <HBox alignment="TOP_CENTER" onMouseClicked="#show_table_vuelos" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -130,26 +128,23 @@
          <children>
             <VBox HBox.hgrow="NEVER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ASIENTOS" wrappingWidth="237.9140625">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ASIENTOS" wrappingWidth="250.9140625">
                      <styleClass>
                         <String fx:value="fn-24" />
                         <String fx:value="fill-dark" />
                         <String fx:value="txt-center" />
                      </styleClass>
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
                   </Text>
                   <HBox>
                      <children>
-                        <TextField fx:id="txtBuscar" promptText="Buscar">
-                           <styleClass>
-                              <String fx:value="flat" />
-                              <String fx:value="back-white" />
-                              <String fx:value="border-2px" />
-                              <String fx:value="border-light-grey" />
-                           </styleClass>
+                        <ComboBox fx:id="cbVuelos" prefHeight="35.0" prefWidth="200.0" promptText="Escoja un vuelo">
                            <HBox.margin>
-                              <Insets top="5.0" />
+                              <Insets top="4.0" />
                            </HBox.margin>
-                        </TextField>
+                        </ComboBox>
                         <Button mnemonicParsing="false" onMouseClicked="#buscar" prefHeight="25.0" prefWidth="80.0">
                            <HBox.margin>
                               <Insets left="5.0" />
@@ -169,133 +164,28 @@
                            </graphic>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
                   </HBox>
                   <ScrollPane>
-                     <content>
-                        <ListView fx:id="listaAsientos" onMouseClicked="#seleccion_item" styleClass="back-light-grey" />
-                     </content>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets left="50.0" top="10.0" />
                      </VBox.margin>
+                     <content>
+                        <TableView fx:id="tablaAsientos" prefHeight="400.0" prefWidth="474.0">
+                          <columns>
+                            <TableColumn fx:id="fila" prefWidth="132.0" text="FILA" />
+                            <TableColumn fx:id="letra" prefWidth="132.0" text="LETRA" />
+                              <TableColumn fx:id="ocupado" prefWidth="209.0" text="OCUPADO" />
+                          </columns>
+                        </TableView>
+                     </content>
                   </ScrollPane>
                </children>
                <HBox.margin>
-                  <Insets />
+                  <Insets left="50.0" />
                </HBox.margin>
-            </VBox>
-            <VBox>
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FICHA ASIENTO" wrappingWidth="237.9140625">
-                     <styleClass>
-                        <String fx:value="fn-24" />
-                        <String fx:value="fill-dark" />
-                        <String fx:value="txt-center" />
-                     </styleClass>
-                  </Text>
-                  <HBox alignment="CENTER_LEFT" styleClass="back-complementary-red" VBox.vgrow="NEVER">
-                     <children>
-                        <VBox>
-                           <children>
-                              <ImageView pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../assets/images_data/seat.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </VBox>
-                        <VBox>
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fn-24" text="ASIENTO" wrappingWidth="300.0" />
-                              <HBox prefHeight="10.0" />
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <HBox>
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fila" wrappingWidth="100.0" />
-                                          <TextField fx:id="filaAsiento" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox>
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Letra" wrappingWidth="100.0" />
-                                          <TextField fx:id="letraAsiento" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox>
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ocupado" wrappingWidth="100.0" />
-                                          <RadioButton fx:id="rbSiAsiento" mnemonicParsing="false" text="Si">
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="rgOcupado" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                          <RadioButton fx:id="rbNoAsiento" mnemonicParsing="false" selected="true" text="No" toggleGroup="$rgOcupado">
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </RadioButton>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox>
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Avion" wrappingWidth="100.0" />
-                                          <TextField fx:id="avionAsiento" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets left="5.0" right="5.0" />
-                           </padding>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER">
-                           <children>
-                              <Button mnemonicParsing="false" onMouseClicked="#modificar" text="Modificar">
-                                 <styleClass>
-                                    <String fx:value="fn-14" />
-                                    <String fx:value="back-transparent" />
-                                    <String fx:value="fill-blue" />
-                                    <String fx:value="hover-hand" />
-                                 </styleClass>
-                              </Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#borrar" text="Borrar">
-                                 <styleClass>
-                                    <String fx:value="fn-14" />
-                                    <String fx:value="back-transparent" />
-                                    <String fx:value="fill-red" />
-                                    <String fx:value="hover-hand" />
-                                 </styleClass>
-                                 <VBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" />
-                     </effect>
-                  </HBox>
-               </children>
             </VBox>
          </children>
          <VBox.margin>

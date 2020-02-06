@@ -29,7 +29,7 @@ public class Aeropuertos_Interfaz extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/aeropuertos_interfaz/views/Interfaz.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("AeropuertosBD");
+        primaryStage.setTitle("AirManagementBD");
         primaryStage.getIcons().add(new Image("/aeropuertos_interfaz/assets/images/app_icon.png"));
         primaryStage.show();
     }
@@ -50,7 +50,7 @@ public class Aeropuertos_Interfaz extends Application {
         }
 
         CrearBD.aeropuerto(s);
-
+        
         NewHibernateUtil.getSessionFactory();
 
         launch(args);

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="Objetos.Asiento" table="asientos">
+      <composite-id>
+          <key-many-to-one name="vuelo" class="Objetos.Vuelo"/>
+          <key-property name="letra"/>
+          <key-property name="fila"/>
+      </composite-id>
+      <property name="ocupado"/>
+  </class>
+</hibernate-mapping>
